@@ -1,4 +1,4 @@
-// Last updated: 9/19/2025, 2:23:55 PM
+// Last updated: 9/19/2025, 4:06:12 PM
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -8,21 +8,23 @@
  */
 /**
  * @param {ListNode} head
- * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {
-    let node = new ListNode(0, head);
-    let delayedNode = node
-    let k = 1
-    while (head) {
-        if (k > n) {
-            delayedNode = delayedNode.next
+var deleteDuplicates = function (head) {
+    let res = new ListNode(0, head)
+    let dummy = head
+    let curr = res
+    while (dummy) {
+        if (dummy.next && dummy.val === dummy?.next.val) {
+            while (dummy.next && dummy.val === dummy.next.val) {
+                dummy = dummy.next
+            }
+            curr.next = dummy.next
+        } else {
+            // dummy = dummy.next
+            curr = curr.next
         }
-        head = head.next
-        k++
+        dummy = dummy.next
     }
-    delayedNode.next = delayedNode.next?.next
-    return node.next
-
+    return res.next
 };
