@@ -1,4 +1,4 @@
-// Last updated: 9/19/2025, 4:06:12 PM
+// Last updated: 9/19/2025, 4:06:54 PM
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -11,6 +11,7 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
+    if (!head || !head.next) return head;
     let res = new ListNode(0, head)
     let dummy = head
     let curr = res
