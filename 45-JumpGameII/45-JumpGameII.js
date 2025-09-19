@@ -1,4 +1,4 @@
-// Last updated: 9/19/2025, 2:12:57 PM
+// Last updated: 9/19/2025, 2:23:36 PM
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -12,22 +12,24 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function (head, n) {
-    let node = head
-    let delayedNode = head
+    let node = new ListNode(0, head);
+    let delayedNode = node
     let k = 1
-    while (node.next) {
+    while (head) {
         if (k > n) {
             delayedNode = delayedNode.next
         }
-        node = node.next
+        head = head.next
         k++
     }
-    if(k==n){
-        return head.next
-    }
-    if (delayedNode && delayedNode.next) {
-        delayedNode.next = delayedNode.next?.next
-        return head
-    }
-        return null
+    delayedNode.next = delayedNode.next?.next
+    return node.next
+    // if (k == n) {
+    //     return head.next
+    // }
+    // if (delayedNode && delayedNode.next) {
+    //     delayedNode.next = delayedNode.next?.next
+    //     return head
+    // }
+    // return null
 };
