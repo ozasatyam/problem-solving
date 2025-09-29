@@ -1,4 +1,4 @@
-// Last updated: 9/29/2025, 4:30:50 PM
+// Last updated: 9/29/2025, 4:31:22 PM
 /**
  * @param {string} pattern
  * @param {string} s
@@ -14,8 +14,6 @@ var wordPattern = function (pattern, s) {
     for (let i = 0; i < n; i++) {
         let ch = splitS[i]
         let word = pattern[i]
-        console.log(sMap, patternMap, word, ch)
-
         if (sMap[word] && patternMap[ch]) {
             if (word !== patternMap[ch]) {
                 return false
@@ -24,11 +22,9 @@ var wordPattern = function (pattern, s) {
             continue
         }
         if (!sMap[word] && patternMap.hasOwnProperty(ch)) {
-            console.log("here2")
 
             return false
         } if (sMap[word] && !patternMap[ch]) {
-            console.log("here1]3")
 
             return false
         }
