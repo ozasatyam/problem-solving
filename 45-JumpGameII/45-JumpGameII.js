@@ -1,19 +1,40 @@
-// Last updated: 9/29/2025, 12:16:35 PM
+// Last updated: 9/29/2025, 4:28:11 PM
 /**
+ * @param {string} pattern
  * @param {string} s
- * @param {string} t
  * @return {boolean}
  */
-var isIsomorphic = function (s, t) {
-    let map = {}
-    for (let i = 0; i < s.length; i++) {
-        if (map[s[i]]) {
-            if (map[s[i]] !== t[i])
+var wordPattern = function (pattern, s) {
+    let patternMap = {}
+    let sMap = {}
+    let n = pattern.length
+    let splitS = s.split(" ")
+
+    if (n !== splitS.length) return false
+    for (let i = 0; i < n; i++) {
+        let ch = splitS[i]
+        let word = pattern[i]
+        console.log(sMap, patternMap, word, ch)
+
+        if (sMap[word] && patternMap[ch]) {
+            if (word !== patternMap[ch]) {
                 return false
-        } else if (Object.values(map).includes(t[i])) {
+            }
+            if (ch !== sMap[word]) return false
+            continue
+        }
+        if (!sMap[word] && patternMap.hasOwnProperty(ch)) {
+            console.log("here2")
+
+            return false
+        } if (sMap[word] && !patternMap[ch]) {
+            console.log("here1]3")
+
             return false
         }
-        map[s[i]] = t[i]
+        patternMap[ch] = word
+        sMap[word] = ch
+
     }
     return true
 };
