@@ -1,33 +1,19 @@
-// Last updated: 9/19/2025, 4:07:48 PM
+// Last updated: 9/29/2025, 12:16:27 PM
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var deleteDuplicates = function(head) {
-    let dummy = new ListNode(-1)
-    dummy.next = head
-    let cur = head
-    let prev = dummy
-
-    while (cur && cur.next) {
-        if (cur.next.val === cur.val){
-            while (cur.next && cur.val === cur.next.val) {
-                cur = cur.next
-            }
-            prev.next = cur.next
-        } else {
-            prev = cur
+var isIsomorphic = function (s, t) {
+    let map = {}
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]]) {
+            if (map[s[i]] !== t[i])
+                return false
+        } else if (Object.values(map).includes(t[i])) {
+            return false
         }
-
-        cur = cur.next
+        map[s[i]] = t[i]
     }
-
-    return dummy.next
+    return true
 };
