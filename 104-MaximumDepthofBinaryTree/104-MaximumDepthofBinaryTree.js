@@ -1,4 +1,4 @@
-// Last updated: 10/9/2025, 7:17:25 PM
+// Last updated: 10/9/2025, 10:40:10 PM
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -8,16 +8,15 @@
  * }
  */
 /**
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {boolean}
+ * @param {TreeNode} root
+ * @return {TreeNode}
  */
-var isSameTree = function (p, q) {
-    if (!p && !q) {
-        return true
-    }
-    if (p && q && (p.val === q.val)){
-        return isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
-    }
-    return false
+var invertTree = function (root) {
+    if (!root) return null
+    let temp = root.left
+    root.left = root.right
+    root.right = temp
+    invertTree(root.left)
+    invertTree(root.right)
+    return root
 };
