@@ -13,21 +13,33 @@
  * @return {_Node}
  */
 var connect = function (root) {
-    if (!root) return root;
-    let queue = [root]
-    while (queue.length) {
-        const levelSize = queue.length;
 
-        for (let i = 0; i < levelSize; i++) {
-            let node = queue.shift()
-            if (i < levelSize - 1) node.next = queue[0];
-
-            if (node.left)
-                queue.push(node.left)
-            if (node.right)
-                queue.push(node.right)
-
+    let head = null //head of the next level
+    let prev = null //the leading node on the next level
+    let curr = root;
+    while (curr != null) {
+        while (curr != null) {
+            if (curr.left !== null) {
+                if (prev !== null) {
+                    prev.next = curr.left
+                } else {
+                    head = curr.left
+                }
+                prev = curr.left
+            }
+            if (curr.right !== null) {
+                if (prev !== null) {
+                    prev.next = curr.right
+                } else {
+                    head = curr.right
+                }
+                prev = curr.right
+            }
+            curr = curr.next
         }
+        curr = head
+        head = null
+        prev = null
     }
     return root
 };
