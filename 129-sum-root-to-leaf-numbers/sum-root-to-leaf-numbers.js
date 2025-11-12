@@ -11,18 +11,18 @@
  * @return {number}
  */
 var sumNumbers = function (root) {
-    const array = new Array()
+    let sum = 0
     function dfs(root, path) {
         if (!root) return null
         path *= 10
         path += root.val
-        if (!root.left && !root.right) return array.push(path)
+        if (!root.left && !root.right) return sum += path
         dfs(root.left, path)
         dfs(root.right, path)
     }
     dfs(root, 0)
 
 
-    return array.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    return sum
 
 };
