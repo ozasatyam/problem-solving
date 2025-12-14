@@ -23,7 +23,7 @@ var lowestCommonAncestor = function (root, p, q) {
         if (leftLCA && rightLCA) {
             return node
         }
-        return leftLCA ? leftLCA : rightLCA
+        return leftLCA ?? rightLCA
     }
     return lca(root)
 
