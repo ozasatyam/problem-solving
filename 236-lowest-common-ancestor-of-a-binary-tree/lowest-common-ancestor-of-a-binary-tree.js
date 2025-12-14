@@ -12,19 +12,13 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-    function lca(node) {
-        if (!node) return
-        if (node.val === p.val || node.val === q.val) {
-            return node
-        }
-        const leftLCA = lca(node.left)
-        const rightLCA = lca(node.right)
+    if (root === null) return null;
+    if (root === p || root === q) return root;
 
-        if (leftLCA && rightLCA) {
-            return node
-        }
-        return leftLCA ?? rightLCA
-    }
-    return lca(root)
+    let leftLCA = lowestCommonAncestor(root.left, p, q)
+    let rightLCA = lowestCommonAncestor(root.right, p, q)
+    if (leftLCA !== null && rightLCA !== null) return root;
+    if (leftLCA) return leftLCA;
+    else return rightLCA;
 
 };
