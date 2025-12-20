@@ -19,16 +19,14 @@ var zigzagLevelOrder = function (root) {
         let arr = []
         for (let i = 0; i < n; i++) {
             const node = array.shift()
-            if (node?.val !== undefined) {
                 if (zigzag) {
                     arr.unshift(node.val)
 
                 } else {
                     arr.push(node.val)
                 }
-                node?.left && array.push(node.left)
-                node?.right && array.push(node.right)
-            }
+                node.left && array.push(node.left)
+                node.right && array.push(node.right)
         }
         ans.push(arr)
         zigzag = !zigzag
