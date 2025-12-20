@@ -11,7 +11,7 @@
  * @return {number[][]}
  */
 var zigzagLevelOrder = function (root) {
-    let zigzag = 1
+    let zigzag = false
     let array = (root !== null) ? [root] : []
     let ans = []
     while (array.length) {
@@ -20,7 +20,7 @@ var zigzagLevelOrder = function (root) {
         for (let i = 0; i < n; i++) {
             const node = array.shift()
             if (node?.val !== undefined) {
-                if ((zigzag % 2) == 0) {
+                if (zigzag) {
                     arr.unshift(node.val)
 
                 } else {
@@ -31,7 +31,7 @@ var zigzagLevelOrder = function (root) {
             }
         }
         ans.push(arr)
-        zigzag++
+        zigzag = !zigzag
     }
     return ans
 };
