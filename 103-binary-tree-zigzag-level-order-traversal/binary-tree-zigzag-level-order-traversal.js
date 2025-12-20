@@ -13,7 +13,6 @@
 var zigzagLevelOrder = function (root) {
     let zigzag = 1
     let array = (root !== null) ? [root] : []
-    console.log(array, "array")
     let ans = []
     while (array.length) {
         let n = array.length
